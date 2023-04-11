@@ -26,12 +26,19 @@ class BookController extends Controller
         $response = Http::get('https://www.anapioficeandfire.com/api/books', ['name' => $req->name]);
 
 
-        $resp = $response->collect()->transform(function ($item, $key) {
+        $resp = $response->collect()->map(function ($item, $key) {
 
-            return collect($item)->forget(['characters', 'povCharacters', 'url']);
+            return [
+                'name' => $item['name'],
+                'isbn' => $item['isbn'],
+                'authors' => $item['authors'],
+                'number_of_pages' => $item['numberOfPages'],
+                'publisher' => $item['publisher'],
+                'country' => $item['country'],
+                'release_date' => date('Y-m-d', strtotime($item['released'])),
+            ];
         });
 
-       
         return response()->json(['status_code' => 200, "success" => "success", "data" => $resp]);
     }
 }
