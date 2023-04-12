@@ -16,17 +16,17 @@ class BookResource extends JsonResource
     public function toArray(Request $req): array
     {
 
-        dd(gettype($req->all()));
+      
         return [
 
-            
-           'name' => $req->name,
-           'isbn' =>  $req->isbn,
-           'authors' =>  $req->authors,
-           'number_of_pages' => $req->number_of_pages,
-           'country' =>  $req->country,
-           'release_date' => $req->release_date 
-        
+            'id' => $this->id,
+            'name' => $this->name,
+            'isbn' =>  $this->isbn,
+            'authors' =>  $this->authors,
+            'number_of_pages' => $this->number_of_pages,
+            'country' =>  $this->country,
+            'release_date' => $this->release_date
+
         ];
     }
 }

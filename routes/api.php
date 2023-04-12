@@ -18,6 +18,8 @@ Route::get('/external-books', [App\Http\Controllers\Api\BookController::class, '
 
 Route::post('/v1/books', [App\Http\Controllers\Api\BookController::class, 'create'] );
 
+Route::get('/v1/books', [App\Http\Controllers\Api\BookController::class, 'read'] );
+
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });

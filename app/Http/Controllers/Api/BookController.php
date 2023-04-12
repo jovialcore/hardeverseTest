@@ -74,4 +74,11 @@ class BookController extends Controller
             ]);
         }
     }
+
+    public function read()
+    {
+        $books = Book::all();
+
+        return BookResource::collection($books);
+    }
 }
