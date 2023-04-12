@@ -34,14 +34,13 @@ class BookController extends Controller
 
             'name' => 'required|string',
             'isbn' => 'required|integer',
-            'authors' => 'required|string',
             'number_of_pages' => 'required',
             'publisher' => 'required|string',
-            'release_date' => 'required',
             'country' => 'required|string'
         ]);
 
-        return redirect()->with('msg', 'Books updated successfully');
+        $book->update($req->all());
+        return redirect()->route('book.edit', $id)->with('msg', 'Books updated successfully');
     }
 
 
