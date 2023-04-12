@@ -9,8 +9,9 @@
                 <div class="card-body">
 
                     <h3>Add </h3>
-                    <form action="{{ route('admin.testimony.vetted.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('book.update') }}" method="POST" >
                         @csrf
+                        @method('PUT')
                         <div class="row">
 
                             <div class="form-group col-6">
@@ -18,25 +19,28 @@
                                 <input type="text" required name="name" class="form-control">
                             </div>
                             <div class="form-group col-6">
-                                <label for="">Email</label>
-                                <input type="email" required name="email" class="form-control">
-                            </div>
-
-
-                            <div class="form-group col-6">
-                                <label for="">Phone</label>
-                                <input type="number" required name="phone" class="form-control">
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="">City</label>
-                                <input type="text" name="city" class="form-control">
+                                <label for="">isbn</label>
+                                <input type="text" required name="isbn" class="form-control">
                             </div>
 
 
                             <div class="form-group col-6">
                                 <label for="">Country</label>
+                                <input type="text" required name="country" class="form-control">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="">Number of pages</label>
+                                <input type="text" name="city" class="form-control">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="">Publisher</label>
+                                <input type="text" name="publisher" class="form-control">
+                            </div>
+
+                            {{-- <div class="form-group col-6">
+                                <label for="">Authors</label>
                                 <select class="custom-select" name="country">
-                                    @foreach ($countries as $country)
+                                    @foreach ($Authr as $country)
                                         <option value="{{ $country->id }}">{{ $country->libelle }}</option>
                                     @endforeach
 
@@ -45,7 +49,7 @@
                             <div class="form-group col-6">
                                 <label for="">Media </label>
                                 <input type="file" name="banner_path" class="form-control">
-                            </div>
+                            </div> --}}
 
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>

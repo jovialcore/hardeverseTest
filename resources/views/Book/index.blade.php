@@ -6,30 +6,27 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">id</th>
+                        <th scope="col">book name</th>
+                        <th scope="col">isbn</th>
+                        <th scope="col">author</th>
+                        <th scope="col">publisher</th>
+                        <th scope="col">country</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    @foreach ($books as $book)
+                        <tr>
+
+                            <td>{{ $book->name }}</td>
+                            <td>{{ $book->isbn }}</td>
+                            <td>{{ $book->authors }}</td>
+                            <td>{{ $book->publisher }}</td>
+                            <td>{{ $book->country }}</td>
+
+                        </tr>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>
