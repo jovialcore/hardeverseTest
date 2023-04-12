@@ -66,7 +66,7 @@ class BookController extends Controller
             $book = Book::create($req->all());
 
             if ($book) {
-                return response()->json(['success' => '200', 'message' => 'Books were succesfully saved']);
+                return response()->json(['success' => '201', 'message' => 'Books were succesfully saved']);
             }
         } catch (\Throwable $th) {
             return response()->json([
@@ -75,9 +75,20 @@ class BookController extends Controller
         }
     }
 
-    public function read()
+
+    public function read(Request $request)
     {
         $books = Book::all();
+        
+        if ($books->count() < 1) {
+            return response()->json([
+                
+                'status_code' => 200,
+                'status' => 'success',
+                'data' => []
+
+            ]);
+        }
 
         return BookResource::collection($books);
     }
