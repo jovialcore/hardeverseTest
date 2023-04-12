@@ -79,28 +79,36 @@ class BookController extends Controller
     public function read(Request $r)
     {
 
-
         $books = Book::all();
 
         // search item
         if ($r->item) {
 
             // search functionality
-            $books = Book::query()
+            $results = Book::query()
                 ->where('name', 'LIKE', '%' . $r->item . '%')
                 ->orWhere('country', 'LIKE', '%' . $r->item . '%')
                 ->orWhere('publisher', 'LIKE', '%' . $r->item . '%')
                 ->orWhere('release_date', 'LIKE', '%' . $r->item . '%')
                 ->get();
 
-            if ($books->count() < 1) {
+            if ($results->count() < 1) {
                 return response()->json([
 
-                    'status_code' => 200,
-                    'status' => 'success',
-                    'data' => []
+                    'status_code' => 404,
+                    'status' => 'not found',
+                    'message' => 'Search item not found. Please search for book name, country, publisher  or release date'
                 ]);
             }
+        }
+
+        if ($books->count() < 1) {
+            return response()->json([
+
+                'status_code' => 200,
+                'status' => 'success',
+                'data' => []
+            ]);
         }
 
         return BookResource::collection($books);
