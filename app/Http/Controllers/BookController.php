@@ -49,6 +49,6 @@ class BookController extends Controller
     {
         Book::destroy($id);
 
-        return redirect()->route('book.edit')->with('msg', 'Book deleted successfully');
+        return redirect()->route('book.list')->with('msg', 'Book deleted successfully');
     }
 }
