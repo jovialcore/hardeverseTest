@@ -15,9 +15,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php  $id  = 1;?>
                     @foreach ($books as $book)
                         <tr>
-
+                            <td>{{ $id++ }}</td>
                             <td>{{ $book->name }}</td>
                             <td>{{ $book->isbn }}</td>
                             <td>{{ $book->authors }}</td>
