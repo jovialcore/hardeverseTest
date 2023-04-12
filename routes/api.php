@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/external-books', [App\Http\Controllers\Api\BookController::class, 'list'] );
 
+Route::post('/v1/books', [App\Http\Controllers\Api\BookController::class, 'create'] );
+
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
