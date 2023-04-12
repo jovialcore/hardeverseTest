@@ -19,8 +19,14 @@ class BookController extends Controller
     }
 
 
+    public function edit($id)
+    {
+        $book = Book::findOrFail($id);
+        return view('Book.edit', compact('book'));
+    }
 
-    public function edit(Request $req, $id)
+
+    public function update(Request $req, $id)
     {
         $book = Book::findOrFail($id);
 
@@ -43,6 +49,6 @@ class BookController extends Controller
     {
         Book::destroy($id);
 
-        return redirect()->with('msg', 'Book deleted successfully');
+        return redirect()->route('book.edit')->with('msg', 'Book deleted successfully');
     }
 }
