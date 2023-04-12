@@ -173,17 +173,11 @@ class BookController extends Controller
     {
         $bookShow = Book::findOrFail($id);
 
+        return (new BookResource($bookShow))->additional([
 
-        if ($bookShow) {
-
-            return (new BookResource($bookShow))->additional([
-
-                'status_code' => 200,
-                'status' => 'success',
-                'message' => 'The book My First Book was updated successfully'
-            ]);
-        } else {
-            
-        }
+            'status_code' => 200,
+            'status' => 'success',
+            'message' => 'The book My First Book was updated successfully'
+        ]);
     }
 }
