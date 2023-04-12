@@ -19,5 +19,5 @@ Route::get('/books/edit/{id}', [App\Http\Controllers\BookController::class, 'edi
 
 Route::post('/books/update/{id}', [App\Http\Controllers\BookController::class, 'update'])->name('book.update');
 
-Route::get('/books/delete/{id}', [App\Http\Controllers\BookController::class, 'delete']);
+Route::get('/books/delete/{id}', [App\Http\Controllers\BookController::class, 'delete'])->name('book.delete');
 
