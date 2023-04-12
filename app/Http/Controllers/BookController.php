@@ -30,7 +30,7 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
 
-        $req->validate($req->all(), [
+        $req->validate([
 
             'name' => 'required|string',
             'isbn' => 'required|integer',
