@@ -113,4 +113,77 @@ class BookController extends Controller
 
         return BookResource::collection($books);
     }
+
+    public function update(Request $req, $id)
+    {
+
+        try {
+            $book = Book::findOrFail($id);
+
+            $validator = Validator::make($req->all(), [
+
+                'name' => 'required|string',
+                'isbn' => 'required|integer',
+                'authors' => 'required|string',
+                'number_of_pages' => 'required',
+                'publisher' => 'required|string',
+                'release_date' => 'required',
+                'country' => 'required|string'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'errors' => $validator->errors()
+                ], 422);
+            }
+
+
+            $bookUpdated = $book->update($req->all());
+
+            if ($bookUpdated) {
+
+                return (new BookResource($book))->additional([
+
+                    'status_code' => 200,
+                    'status' => 'success',
+                    'message' => 'The book My First Book was updated successfully'
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'errors' => $th->getMessage()
+            ]);
+        }
+    }
+
+    public function delete($id)
+    {
+        $bookDelete = Book::destroy($id);
+        if ($bookDelete) {
+            return response()->json([
+
+                'status_code' => 204,
+                'status' => 'The book My First Book was deleted successfully',
+                'data' => []
+            ]);
+        }
+    }
+
+    public function show($id)
+    {
+        $bookShow = Book::findOrFail($id);
+
+
+        if ($bookShow) {
+
+            return (new BookResource($bookShow))->additional([
+
+                'status_code' => 200,
+                'status' => 'success',
+                'message' => 'The book My First Book was updated successfully'
+            ]);
+        } else {
+            
+        }
+    }
 }
